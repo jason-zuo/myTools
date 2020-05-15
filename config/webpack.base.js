@@ -1,5 +1,4 @@
 const autoprefixer = require('autoprefixer');
-const glob = require('glob');
 const path = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
@@ -20,7 +19,8 @@ module.exports = {
                 test: /.js$/,
                 use: [
                     {
-                        loader: 'babel-loader'
+                        loader: 'babel-loader',
+                        options: {compact: false}
                     }
                 ],
             },
@@ -91,13 +91,11 @@ module.exports = {
         new MiniCssExtractPlugin({
             filename: '[name]_[contenthash:8].css',
         }),
-        new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
             inlineSource: '.css$',
             template: path.join(projectRoot, `./build/index.html`),
-            filename: 'index.html',
-            chunks: ['vendors'],
-            inject: true,
+            filename: `index.html`,
+            chunks: 'index.js',
             minify: {
                 html5: true,
                 collapseWhitespace: true,
@@ -107,6 +105,7 @@ module.exports = {
                 removeComments: false,
             },
         }),
+        new CleanWebpackPlugin(),
         new FriendlyErrorsWebpackPlugin(),
         function errorPlugin() {
             this.hooks.done.tap('done', (stats) => {
@@ -115,6 +114,6 @@ module.exports = {
                 }
             });
         },
-    ].concat(htmlWebpackPlugins),
+    ],
     stats: 'errors-only',
 };
