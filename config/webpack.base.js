@@ -8,7 +8,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const projectRoot = process.cwd();
 
 module.exports = {
-    entry: './src/index.js',
+    entry: './src/weather.js',
     output: {
         path: path.join(projectRoot, 'dist'),
         filename: '[name]_[chunkhash:8].js'
@@ -95,7 +95,7 @@ module.exports = {
             inlineSource: '.css$',
             template: path.join(projectRoot, `./build/index.html`),
             filename: `index.html`,
-            chunks: 'index.js',
+            chunks: 'weather.js',
             minify: {
                 html5: true,
                 collapseWhitespace: true,
@@ -107,13 +107,7 @@ module.exports = {
         }),
         new CleanWebpackPlugin(),
         new FriendlyErrorsWebpackPlugin(),
-        function errorPlugin() {
-            this.hooks.done.tap('done', (stats) => {
-                if (stats.compilation.errors && stats.compilation.errors.length && process.argv.indexOf('--watch') === -1) {
-                    process.exit(1);
-                }
-            });
-        },
+
     ],
     stats: 'errors-only',
 };

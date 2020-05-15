@@ -13,6 +13,9 @@ const devConfig = {
     devServer: {
         contentBase: './dist',
         hot: true,
+        useLocalIp: true,
+        port: 1011,
+        host: '192.168.31.38',
         stats: 'errors-only',
     },
     devtool: 'cheap-source-map',
