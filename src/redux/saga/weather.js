@@ -1,4 +1,5 @@
-import {select, put, call, delay} from 'redux-saga/effects';
+import { select, put, call, delay } from 'redux-saga/effects';
+
 export function* getWeather() {
-    yield call(delay, 1000)
+  yield call(delay, 1000);
 }

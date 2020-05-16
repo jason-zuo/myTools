@@ -8,38 +8,48 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const projectRoot = process.cwd();
 
 module.exports = {
-    entry: './src/weather.js',
+    entry: './src/index.js',
     output: {
         path: path.join(projectRoot, 'dist'),
         filename: '[name]_[chunkhash:8].js'
     },
     module: {
         rules: [
+            // {
+            //     //前置(在执行编译之前去执行eslint-loader检查代码规范，有报错就不执行编译)
+            //     enforce: 'pre',
+            //     test: /.(js|jsx)$/,
+            //     loader: 'eslint-loader',
+            //     include: /src/,
+            //     exclude: [
+            //         path.join(projectRoot,'node_modules')
+            //     ]
+            // },
             {
-                test: /.js$/,
+                test: /\.(js|jsx)$/,
                 use: [
                     {
                         loader: 'babel-loader',
                         options: {compact: false}
                     }
-                ],
+                ]
             },
             {
-                test: /.css$/,
+                test: /\.css$/,
                 use: [
                     MiniCssExtractPlugin.loader,
                     'css-loader',
-                    {
-                        loader: 'px2rem-loader',
-                        options: {
-                            remUnit: 75,
-                            remPrecision: 8,
-                        },
-                    }
+                    // {
+                    //     loader: 'px2rem-loader',
+                    //     options: {
+                    //         remUnit: 75,
+                    //         remPrecision: 8,
+                    //     }
+                    // }
                 ],
             },
             {
-                test: /.less$/,
+                test: /\.scss/,
                 use: [
                     MiniCssExtractPlugin.loader,
                     'css-loader',
@@ -55,12 +65,12 @@ module.exports = {
                         options: {
                             plugins: () => [
                                 autoprefixer({
-                                    browsers: ['last 2 version', '>1%', 'ios 7'],
+                                    overrideBrowserslist: ['last 2 version', '>1%', 'ios 7'],
                                 }),
                             ],
                         },
                     },
-                    'less-loader'
+                    'sass-loader'
                 ],
             },
             {
@@ -95,7 +105,7 @@ module.exports = {
             inlineSource: '.css$',
             template: path.join(projectRoot, `./build/index.html`),
             filename: `index.html`,
-            chunks: 'weather.js',
+            chunks: 'index.js',
             minify: {
                 html5: true,
                 collapseWhitespace: true,
@@ -109,5 +119,11 @@ module.exports = {
         new FriendlyErrorsWebpackPlugin(),
 
     ],
+    resolve: {
+        alias: {
+            '@': path.resolve(projectRoot, "src")
+        }
+    },
     stats: 'errors-only',
-};
+}
+;

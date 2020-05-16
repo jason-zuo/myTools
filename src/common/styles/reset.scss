@@ -100,3 +100,8 @@ hr {
 input, select {
     vertical-align:middle;
 }
+
+body, html, #app{
+    height: 100%;
+}
+@import '../../assets/icons/iconfont.css';

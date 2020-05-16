@@ -1,0 +1,5 @@
+test/
+dist/
+config/
+.eslintrc
+mock/
