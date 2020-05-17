@@ -3,7 +3,7 @@ import {
   BrowserRouter as Router,
   Route,
   Redirect,
-  Switch,
+  Switch
 } from 'react-router-dom';
 
 import Weather from '../pages/weather/weather';
@@ -22,6 +22,5 @@ class MyRouter extends Component {
     );
   }
 }
-
 
 export default MyRouter;

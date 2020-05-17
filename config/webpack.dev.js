@@ -17,7 +17,7 @@ const devConfig = {
         port: 1011,
         inline:true,  //缺少该配置，会出现history路由找不到路径情况
 	    historyApiFallback:true,  //缺少该配置，会出现history路由找不到路径情况
-        // host: '192.168.199.134',
+        host:'0.0.0.0',
         stats: 'errors-only',
         proxy: {
           '/api': {

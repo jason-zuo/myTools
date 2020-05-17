@@ -1,0 +1,14 @@
+.homeContainer {
+  column-count: 2;
+  column-gap: 0;
+
+  .paperItem {
+    padding-top: 20px;
+    margin-bottom: 20px;
+    img {
+      width: 330px; //no
+      margin: 0 auto;
+      display: block;
+    }
+  }
+}

@@ -1,16 +1,14 @@
 import Immutable from 'immutable';
 import { WEATHER_DATA } from '../../action/weather';
 
-const initialState = Immutable.fromJS({
+const initialState = {
   newUser: null,
-});
+};
 
 export const weather = (state = initialState, action = {}) => {
   switch (action.type) {
     case WEATHER_DATA:
-      return state.merge({
-        newUser: 1222,
-      });
+      return state;
     default:
       return state;
   }

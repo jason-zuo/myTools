@@ -1,14 +1,20 @@
 import React, { Component } from 'react';
-
 import { TabBar } from 'antd-mobile';
+import Other from './pages/other';
+import Weather from './pages/weather/weather';
+import List from './pages/list';
+
 import './app.scss';
 
-class App extends Component {
+export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       selectedTab: 'home',
     };
+  }
+
+  componentDidMount() {
   }
 
   render() {
@@ -26,13 +32,18 @@ class App extends Component {
             title="首页"
             key="home"
             icon={(
-              <i className="iconfont iconhome" style={{ fontSize: '24px', color: '#ffcb00' }} />
-)}
+              <i
+                className="iconfont iconhome"
+                style={{ fontSize: '24px', color: '#ffcb00' }}
+              />
+                          )}
             selectedIcon={(
-              <i className="iconfont iconhome" style={{ fontSize: '24px', color: '#000' }} />
-)}
+              <i
+                className="iconfont iconhome"
+                style={{ fontSize: '24px', color: '#000' }}
+              />
+                          )}
             selected={this.state.selectedTab === 'home'}
-            badge={1}
             onPress={() => {
               this.setState({
                 selectedTab: 'home',
@@ -40,12 +51,60 @@ class App extends Component {
             }}
             data-seed="logId"
           >
-              <div className="ac">sdf</div>
+            <List />
+          </TabBar.Item>
+          <TabBar.Item
+            title="天气"
+            key="weather"
+            icon={(
+              <i
+                className="iconfont iconweather_duoyun"
+                style={{ fontSize: '24px', color: '#ffcb00' }}
+              />
+                          )}
+            selectedIcon={(
+              <i
+                className="iconfont iconweather_duoyun"
+                style={{ fontSize: '24px', color: '#000' }}
+              />
+                          )}
+            selected={this.state.selectedTab === 'weather'}
+            onPress={() => {
+              this.setState({
+                selectedTab: 'weather',
+              });
+            }}
+            data-seed="logId"
+          >
+            <Weather />
+          </TabBar.Item>
+          <TabBar.Item
+            title="其他"
+            key="other"
+            icon={(
+              <i
+                className="iconfont iconzapin"
+                style={{ fontSize: '24px', color: '#ffcb00' }}
+              />
+                          )}
+            selectedIcon={(
+              <i
+                className="iconfont iconzapin"
+                style={{ fontSize: '24px', color: '#000' }}
+              />
+                          )}
+            selected={this.state.selectedTab === 'other'}
+            onPress={() => {
+              this.setState({
+                selectedTab: 'other',
+              });
+            }}
+            data-seed="other"
+          >
+            <Other />
           </TabBar.Item>
         </TabBar>
       </>
     );
   }
 }
-
-export default App;
